@@ -1,0 +1,31 @@
+{
+  "name": "ai-memory-presentation",
+  "version": "1.0.0",
+  "description": "AI의 기억술: LLM 메모리 한계와 미래 아키텍처 발표",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "serve": "python3 -m http.server 8000",
+    "build": "echo 'No build step required for static site'",
+    "deploy": "gh-pages -d .",
+    "pdf": "decktape reveal http://localhost:8000 presentation.pdf"
+  },
+  "keywords": [
+    "ai",
+    "llm",
+    "memory",
+    "graphrag",
+    "presentation",
+    "reveal.js"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/ai-memory-presentation.git"
+  },
+  "homepage": "https://your-username.github.io/ai-memory-presentation"
+}
