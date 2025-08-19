@@ -197,23 +197,23 @@ function createRAGArchitecture() {
     if (!container) return;
 
     container.innerHTML = `
-        <div class="diagram-box" style="top: 10%; left: 5%; width: 18%;">
+        <div class="diagram-box" style="top: 15%; left: 8%; width: 16%;">
             Query
         </div>
-        <div class="diagram-arrow right" style="top: 15%; left: 25%;"></div>
-        <div class="diagram-box" style="top: 10%; left: 35%; width: 18%;">
+        <div class="diagram-arrow right" style="top: 20%; left: 26%;"></div>
+        <div class="diagram-box" style="top: 15%; left: 32%; width: 16%;">
             Vector DB
         </div>
-        <div class="diagram-arrow down" style="top: 30%; left: 44%;"></div>
-        <div class="diagram-box" style="top: 45%; left: 35%; width: 18%;">
+        <div class="diagram-arrow down" style="top: 35%; left: 39%;"></div>
+        <div class="diagram-box" style="top: 45%; left: 32%; width: 16%;">
             Retrieved Docs
         </div>
-        <div class="diagram-arrow right" style="top: 50%; left: 55%;"></div>
-        <div class="diagram-box" style="top: 45%; left: 65%; width: 18%;">
+        <div class="diagram-arrow right" style="top: 50%; left: 50%;"></div>
+        <div class="diagram-box" style="top: 45%; left: 56%; width: 16%;">
             LLM
         </div>
-        <div class="diagram-arrow down" style="top: 65%; left: 74%;"></div>
-        <div class="diagram-box" style="top: 80%; left: 65%; width: 18%;">
+        <div class="diagram-arrow down" style="top: 65%; left: 63%;"></div>
+        <div class="diagram-box" style="top: 75%; left: 56%; width: 16%;">
             Answer
         </div>
     `;
@@ -225,30 +225,30 @@ function createGraphRAGArchitecture() {
     if (!container) return;
 
     container.innerHTML = `
-        <div class="diagram-box" style="top: 5%; left: 5%; width: 16%; height: 25%;">
+        <div class="diagram-box" style="top: 8%; left: 8%; width: 15%; height: 22%;">
             Documents
         </div>
-        <div class="diagram-arrow right" style="top: 15%; left: 23%;"></div>
-        <div class="diagram-box" style="top: 5%; left: 30%; width: 18%; height: 25%;">
+        <div class="diagram-arrow right" style="top: 16%; left: 25%;"></div>
+        <div class="diagram-box" style="top: 8%; left: 30%; width: 16%; height: 22%;">
             Knowledge Graph
         </div>
-        <div class="diagram-arrow down" style="top: 32%; left: 39%;"></div>
-        <div class="diagram-box" style="top: 40%; left: 30%; width: 18%; height: 20%;">
+        <div class="diagram-arrow down" style="top: 32%; left: 37%;"></div>
+        <div class="diagram-box" style="top: 40%; left: 30%; width: 16%; height: 18%;">
             Communities
         </div>
-        <div class="diagram-arrow right" style="top: 48%; left: 50%;"></div>
-        <div class="diagram-box" style="top: 40%; left: 58%; width: 18%; height: 20%;">
+        <div class="diagram-arrow right" style="top: 47%; left: 48%;"></div>
+        <div class="diagram-box" style="top: 40%; left: 54%; width: 16%; height: 18%;">
             Summaries
         </div>
-        <div class="diagram-box" style="top: 70%; left: 5%; width: 15%; height: 20%; background: linear-gradient(135deg, #ff7043, #ff5722);">
+        <div class="diagram-box" style="top: 68%; left: 8%; width: 14%; height: 18%; background: linear-gradient(135deg, #ff7043, #ff5722);">
             Query
         </div>
-        <div class="diagram-arrow right" style="top: 78%; left: 22%;"></div>
-        <div class="diagram-box" style="top: 70%; left: 30%; width: 20%; height: 20%;">
+        <div class="diagram-arrow right" style="top: 75%; left: 24%;"></div>
+        <div class="diagram-box" style="top: 68%; left: 30%; width: 18%; height: 18%;">
             Global Search
         </div>
-        <div class="diagram-arrow right" style="top: 78%; left: 52%;"></div>
-        <div class="diagram-box" style="top: 70%; left: 60%; width: 18%; height: 20%;">
+        <div class="diagram-arrow right" style="top: 75%; left: 50%;"></div>
+        <div class="diagram-box" style="top: 68%; left: 56%; width: 16%; height: 18%;">
             Response
         </div>
     `;
@@ -260,23 +260,23 @@ function createRouterArchitecture() {
     if (!container) return;
 
     container.innerHTML = `
-        <div class="diagram-box" style="top: 40%; left: 5%; width: 18%; background: linear-gradient(135deg, #ff7043, #ff5722);">
+        <div class="diagram-box" style="top: 40%; left: 8%; width: 16%; background: linear-gradient(135deg, #ff7043, #ff5722);">
             Router
         </div>
-        <div class="diagram-arrow right" style="top: 45%; left: 25%;"></div>
-        <div class="diagram-box" style="top: 15%; left: 35%; width: 16%; height: 20%;">
+        <div class="diagram-arrow right" style="top: 45%; left: 26%;"></div>
+        <div class="diagram-box" style="top: 18%; left: 32%; width: 15%; height: 18%;">
             Math Model
         </div>
-        <div class="diagram-box" style="top: 40%; left: 35%; width: 16%; height: 20%;">
+        <div class="diagram-box" style="top: 40%; left: 32%; width: 15%; height: 18%;">
             Code Model
         </div>
-        <div class="diagram-box" style="top: 65%; left: 35%; width: 16%; height: 20%;">
+        <div class="diagram-box" style="top: 62%; left: 32%; width: 15%; height: 18%;">
             Text Model
         </div>
-        <div class="diagram-arrow right" style="top: 23%; left: 53%;"></div>
-        <div class="diagram-arrow right" style="top: 48%; left: 53%;"></div>
-        <div class="diagram-arrow right" style="top: 73%; left: 53%;"></div>
-        <div class="diagram-box" style="top: 40%; left: 65%; width: 20%;">
+        <div class="diagram-arrow right" style="top: 25%; left: 49%;"></div>
+        <div class="diagram-arrow right" style="top: 47%; left: 49%;"></div>
+        <div class="diagram-arrow right" style="top: 69%; left: 49%;"></div>
+        <div class="diagram-box" style="top: 40%; left: 56%; width: 18%;">
             Combined Output
         </div>
     `;
@@ -371,10 +371,10 @@ function createMemoryEvolution() {
     if (!container) return;
 
     const evolutionSteps = [
-        { title: 'Static RAG', left: '5%', top: '20%', width: '120px' },
-        { title: 'GraphRAG', left: '25%', top: '40%', width: '120px' },
-        { title: 'Dynamic Memory', left: '50%', top: '30%', width: '140px' },
-        { title: 'Learned Memory', left: '75%', top: '50%', width: '120px' }
+        { title: 'Static RAG', left: '8%', top: '25%', width: '16%' },
+        { title: 'GraphRAG', left: '28%', top: '45%', width: '16%' },
+        { title: 'Dynamic Memory', left: '48%', top: '35%', width: '18%' },
+        { title: 'Learned Memory', left: '70%', top: '55%', width: '16%' }
     ];
 
     let html = '';
@@ -386,7 +386,10 @@ function createMemoryEvolution() {
         `;
         
         if (index < evolutionSteps.length - 1) {
-            html += `<div class="diagram-arrow right" style="left: calc(${step.left} + ${step.width}); top: calc(${step.top} + 30px);"></div>`;
+            const nextStep = evolutionSteps[index + 1];
+            const arrowLeft = `calc(${step.left} + ${step.width})`;
+            const arrowTop = `calc(${step.top} + 8%)`;
+            html += `<div class="diagram-arrow right" style="left: ${arrowLeft}; top: ${arrowTop};"></div>`;
         }
     });
 

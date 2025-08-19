@@ -81,12 +81,18 @@
     position: absolute;
     background: linear-gradient(135deg, #64b5f6, #42a5f5);
     border-radius: 8px;
-    padding: 1rem;
+    padding: 0.8rem;
     color: white;
     text-align: center;
     font-weight: bold;
+    font-size: 0.9rem;
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     transition: all 0.3s ease;
+    box-sizing: border-box;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .diagram-box:hover {
@@ -99,18 +105,19 @@
     width: 0;
     height: 0;
     border-style: solid;
+    z-index: 1;
 }
 
 .diagram-arrow.right {
-    border-left: 20px solid #64b5f6;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
+    border-left: 15px solid #64b5f6;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
 }
 
 .diagram-arrow.down {
-    border-top: 20px solid #64b5f6;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
+    border-top: 15px solid #64b5f6;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
 }
 
 /* 타임라인 */
@@ -303,7 +310,8 @@
     }
     
     .timeline-item {
-        width: 250px;
+        width: 80% !important;
+        max-width: 300px !important;
         position: relative !important;
         left: auto !important;
         right: auto !important;
@@ -316,6 +324,42 @@
     
     .timeline::before {
         display: none;
+    }
+    
+    .diagram-box {
+        font-size: 0.8rem;
+        padding: 0.6rem;
+        min-height: 35px;
+    }
+    
+    .architecture-diagram {
+        height: 50vh;
+        min-height: 300px;
+    }
+    
+    .jepa-architecture,
+    .brain-memory-viz,
+    .evolution-path {
+        height: 45vh;
+        min-height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .diagram-box {
+        font-size: 0.7rem;
+        padding: 0.5rem;
+        min-height: 30px;
+    }
+    
+    .chart-container {
+        height: 300px;
+    }
+    
+    .architecture-diagram {
+        height: 40vh;
+        min-height: 250px;
+        padding: 1rem;
     }
 }
 
@@ -405,10 +449,18 @@
     background: rgba(255, 255, 255, 0.1);
     border: 2px solid #64b5f6;
     border-radius: 10px;
-    padding: 1rem;
+    padding: 0.8rem;
     text-align: center;
     backdrop-filter: blur(5px);
     transition: all 0.3s ease;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
 }
 
 .evolution-step:hover {
