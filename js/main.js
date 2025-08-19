@@ -58,9 +58,11 @@ Reveal.on('slidechanged', event => {
     
     // 차트 업데이트 (반응형 처리)
     setTimeout(() => {
-        if (window.Chart) {
-            Chart.helpers.each(Chart.instances, function(instance) {
-                instance.resize();
+        if (window.Chart && Chart.instances) {
+            Object.values(Chart.instances).forEach(instance => {
+                if (instance && typeof instance.resize === 'function') {
+                    instance.resize();
+                }
             });
         }
     }, 300);
@@ -257,18 +259,22 @@ document.addEventListener('DOMContentLoaded', function() {
 // 인쇄/PDF 지원
 window.addEventListener('beforeprint', function() {
     // 인쇄 전 차트 크기 조정
-    if (window.Chart) {
-        Chart.helpers.each(Chart.instances, function(instance) {
-            instance.resize();
+    if (window.Chart && Chart.instances) {
+        Object.values(Chart.instances).forEach(instance => {
+            if (instance && typeof instance.resize === 'function') {
+                instance.resize();
+            }
         });
     }
 });
 
 // 창 크기 변경 시 차트 업데이트
 window.addEventListener('resize', function() {
-    if (window.Chart) {
-        Chart.helpers.each(Chart.instances, function(instance) {
-            instance.resize();
+    if (window.Chart && Chart.instances) {
+        Object.values(Chart.instances).forEach(instance => {
+            if (instance && typeof instance.resize === 'function') {
+                instance.resize();
+            }
         });
     }
 });

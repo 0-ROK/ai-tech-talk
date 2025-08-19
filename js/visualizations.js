@@ -55,7 +55,12 @@ function createContextWindowChart() {
                     ticks: {
                         color: 'white',
                         callback: function(value) {
-                            return value.toLocaleString() + 'k';
+                            if (value >= 1000000) {
+                                return (value / 1000000).toFixed(1) + 'M';
+                            } else if (value >= 1000) {
+                                return (value / 1000).toFixed(0) + 'K';
+                            }
+                            return value.toString();
                         }
                     },
                     grid: {
@@ -192,23 +197,23 @@ function createRAGArchitecture() {
     if (!container) return;
 
     container.innerHTML = `
-        <div class="diagram-box" style="top: 20px; left: 50px; width: 120px;">
+        <div class="diagram-box" style="top: 10%; left: 5%; width: 18%;">
             Query
         </div>
-        <div class="diagram-arrow right" style="top: 50px; left: 190px;"></div>
-        <div class="diagram-box" style="top: 20px; left: 230px; width: 120px;">
+        <div class="diagram-arrow right" style="top: 15%; left: 25%;"></div>
+        <div class="diagram-box" style="top: 10%; left: 35%; width: 18%;">
             Vector DB
         </div>
-        <div class="diagram-arrow down" style="top: 100px; left: 280px;"></div>
-        <div class="diagram-box" style="top: 140px; left: 230px; width: 120px;">
+        <div class="diagram-arrow down" style="top: 30%; left: 44%;"></div>
+        <div class="diagram-box" style="top: 45%; left: 35%; width: 18%;">
             Retrieved Docs
         </div>
-        <div class="diagram-arrow right" style="top: 170px; left: 370px;"></div>
-        <div class="diagram-box" style="top: 140px; left: 410px; width: 120px;">
+        <div class="diagram-arrow right" style="top: 50%; left: 55%;"></div>
+        <div class="diagram-box" style="top: 45%; left: 65%; width: 18%;">
             LLM
         </div>
-        <div class="diagram-arrow down" style="top: 220px; left: 460px;"></div>
-        <div class="diagram-box" style="top: 260px; left: 410px; width: 120px;">
+        <div class="diagram-arrow down" style="top: 65%; left: 74%;"></div>
+        <div class="diagram-box" style="top: 80%; left: 65%; width: 18%;">
             Answer
         </div>
     `;
@@ -220,30 +225,30 @@ function createGraphRAGArchitecture() {
     if (!container) return;
 
     container.innerHTML = `
-        <div class="diagram-box" style="top: 20px; left: 20px; width: 100px; height: 80px;">
+        <div class="diagram-box" style="top: 5%; left: 5%; width: 16%; height: 25%;">
             Documents
         </div>
-        <div class="diagram-arrow right" style="top: 50px; left: 140px;"></div>
-        <div class="diagram-box" style="top: 20px; left: 180px; width: 100px; height: 80px;">
+        <div class="diagram-arrow right" style="top: 15%; left: 23%;"></div>
+        <div class="diagram-box" style="top: 5%; left: 30%; width: 18%; height: 25%;">
             Knowledge Graph
         </div>
-        <div class="diagram-arrow down" style="top: 120px; left: 220px;"></div>
-        <div class="diagram-box" style="top: 160px; left: 180px; width: 100px; height: 60px;">
+        <div class="diagram-arrow down" style="top: 32%; left: 39%;"></div>
+        <div class="diagram-box" style="top: 40%; left: 30%; width: 18%; height: 20%;">
             Communities
         </div>
-        <div class="diagram-arrow right" style="top: 180px; left: 300px;"></div>
-        <div class="diagram-box" style="top: 160px; left: 340px; width: 100px; height: 60px;">
+        <div class="diagram-arrow right" style="top: 48%; left: 50%;"></div>
+        <div class="diagram-box" style="top: 40%; left: 58%; width: 18%; height: 20%;">
             Summaries
         </div>
-        <div class="diagram-box" style="top: 260px; left: 20px; width: 80px; height: 60px; background: linear-gradient(135deg, #ff7043, #ff5722);">
+        <div class="diagram-box" style="top: 70%; left: 5%; width: 15%; height: 20%; background: linear-gradient(135deg, #ff7043, #ff5722);">
             Query
         </div>
-        <div class="diagram-arrow right" style="top: 280px; left: 120px;"></div>
-        <div class="diagram-box" style="top: 260px; left: 160px; width: 120px; height: 60px;">
+        <div class="diagram-arrow right" style="top: 78%; left: 22%;"></div>
+        <div class="diagram-box" style="top: 70%; left: 30%; width: 20%; height: 20%;">
             Global Search
         </div>
-        <div class="diagram-arrow right" style="top: 280px; left: 300px;"></div>
-        <div class="diagram-box" style="top: 260px; left: 340px; width: 100px; height: 60px;">
+        <div class="diagram-arrow right" style="top: 78%; left: 52%;"></div>
+        <div class="diagram-box" style="top: 70%; left: 60%; width: 18%; height: 20%;">
             Response
         </div>
     `;
@@ -255,23 +260,23 @@ function createRouterArchitecture() {
     if (!container) return;
 
     container.innerHTML = `
-        <div class="diagram-box" style="top: 50px; left: 50px; width: 100px; background: linear-gradient(135deg, #ff7043, #ff5722);">
+        <div class="diagram-box" style="top: 40%; left: 5%; width: 18%; background: linear-gradient(135deg, #ff7043, #ff5722);">
             Router
         </div>
-        <div class="diagram-arrow right" style="top: 80px; left: 170px;"></div>
-        <div class="diagram-box" style="top: 20px; left: 210px; width: 80px; height: 60px;">
+        <div class="diagram-arrow right" style="top: 45%; left: 25%;"></div>
+        <div class="diagram-box" style="top: 15%; left: 35%; width: 16%; height: 20%;">
             Math Model
         </div>
-        <div class="diagram-box" style="top: 100px; left: 210px; width: 80px; height: 60px;">
+        <div class="diagram-box" style="top: 40%; left: 35%; width: 16%; height: 20%;">
             Code Model
         </div>
-        <div class="diagram-box" style="top: 180px; left: 210px; width: 80px; height: 60px;">
+        <div class="diagram-box" style="top: 65%; left: 35%; width: 16%; height: 20%;">
             Text Model
         </div>
-        <div class="diagram-arrow right" style="top: 50px; left: 310px;"></div>
-        <div class="diagram-arrow right" style="top: 130px; left: 310px;"></div>
-        <div class="diagram-arrow right" style="top: 210px; left: 310px;"></div>
-        <div class="diagram-box" style="top: 100px; left: 350px; width: 100px;">
+        <div class="diagram-arrow right" style="top: 23%; left: 53%;"></div>
+        <div class="diagram-arrow right" style="top: 48%; left: 53%;"></div>
+        <div class="diagram-arrow right" style="top: 73%; left: 53%;"></div>
+        <div class="diagram-box" style="top: 40%; left: 65%; width: 20%;">
             Combined Output
         </div>
     `;
@@ -283,10 +288,10 @@ function createMemoryTimeline() {
     if (!container) return;
 
     const timelineData = [
-        { year: '2014', title: 'Neural Turing Machine', description: '외부 메모리 개념 도입', side: 'left', top: '20px' },
-        { year: '2016', title: 'Differentiable Neural Computer', description: 'DeepMind의 메모리 시스템', side: 'right', top: '80px' },
-        { year: '2020', title: 'Memory-Augmented Networks', description: '다양한 메모리 아키텍처', side: 'left', top: '140px' },
-        { year: '2024', title: 'GraphRAG', description: '구조화된 외부 메모리', side: 'right', top: '200px' }
+        { year: '2014', title: 'Neural Turing Machine', description: '외부 메모리 개념 도입', side: 'left', top: '10%' },
+        { year: '2016', title: 'Differentiable Neural Computer', description: 'DeepMind의 메모리 시스템', side: 'right', top: '35%' },
+        { year: '2020', title: 'Memory-Augmented Networks', description: '다양한 메모리 아키텍처', side: 'left', top: '60%' },
+        { year: '2024', title: 'GraphRAG', description: '구조화된 외부 메모리', side: 'right', top: '85%' }
     ];
 
     let html = '';
@@ -335,16 +340,16 @@ function createJEPAViz() {
     if (!container) return;
 
     container.innerHTML = `
-        <div class="jepa-component encoder" style="top: 50px; left: 50px;">
+        <div class="jepa-component encoder" style="top: 15%; left: 10%;">
             Encoder X
         </div>
-        <div class="jepa-component encoder" style="top: 50px; right: 50px;">
+        <div class="jepa-component encoder" style="top: 15%; right: 10%;">
             Encoder Y
         </div>
-        <div class="jepa-component predictor" style="top: 200px; left: 70px;">
+        <div class="jepa-component predictor" style="top: 50%; left: 15%;">
             Predictor
         </div>
-        <div class="jepa-component world-model" style="bottom: 50px; left: 50%; transform: translateX(-50%);">
+        <div class="jepa-component world-model" style="bottom: 15%; left: 50%; transform: translateX(-50%);">
             World Model
         </div>
     `;
@@ -354,7 +359,7 @@ function createJEPAViz() {
         container.querySelectorAll('.jepa-component').forEach((comp, index) => {
             setTimeout(() => {
                 comp.style.opacity = '1';
-                comp.style.transform = 'scale(1)';
+                comp.style.transform = comp.style.transform + ' scale(1)';
             }, index * 300);
         });
     }, 500);

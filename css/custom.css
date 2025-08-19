@@ -66,12 +66,15 @@
 
 /* 아키텍처 다이어그램 */
 .architecture-diagram {
-    height: 400px;
+    height: 60vh;
+    min-height: 400px;
+    max-height: 500px;
     position: relative;
     margin: 2rem auto;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 10px;
     padding: 2rem;
+    overflow: hidden;
 }
 
 .diagram-box {
@@ -113,7 +116,9 @@
 /* 타임라인 */
 .timeline {
     position: relative;
-    height: 300px;
+    height: 50vh;
+    min-height: 300px;
+    max-height: 400px;
     margin: 2rem auto;
 }
 
@@ -130,7 +135,9 @@
 
 .timeline-item {
     position: absolute;
-    width: 300px;
+    width: 35%;
+    max-width: 300px;
+    min-width: 200px;
     background: rgba(100, 181, 246, 0.1);
     border: 2px solid #64b5f6;
     border-radius: 10px;
@@ -167,11 +174,14 @@
 
 /* JEPA 시각화 */
 .jepa-architecture {
-    height: 400px;
+    height: 60vh;
+    min-height: 400px;
+    max-height: 500px;
     position: relative;
     background: radial-gradient(circle, rgba(100, 181, 246, 0.1), rgba(66, 165, 245, 0.05));
     border-radius: 15px;
     padding: 2rem;
+    overflow: hidden;
 }
 
 .jepa-component {
@@ -326,12 +336,15 @@
 
 /* 브레인 메모리 시각화 */
 .brain-memory-viz {
-    height: 350px;
+    height: 50vh;
+    min-height: 300px;
+    max-height: 400px;
     position: relative;
     background: radial-gradient(ellipse, rgba(100, 181, 246, 0.1), transparent);
     border-radius: 50%;
     margin: 2rem auto;
-    width: 500px;
+    width: 80%;
+    max-width: 500px;
 }
 
 .brain-region {
@@ -377,7 +390,9 @@
 
 /* 진화 경로 시각화 */
 .evolution-path {
-    height: 300px;
+    height: 40vh;
+    min-height: 250px;
+    max-height: 350px;
     position: relative;
     background: linear-gradient(to right, rgba(100, 181, 246, 0.1), rgba(255, 112, 67, 0.1));
     border-radius: 15px;
