@@ -27,221 +27,502 @@
                 </div>
             </section>
 
-            <!-- 섹션 1: 현재의 딜레마 -->
+            <!-- Act 1: The Great Scaling Question -->
             <section>
                 <section>
-                    <h2>1. 현재의 딜레마</h2>
-                    <h4>왜 ChatGPT는 기억하지 못하는가?</h4>
+                    <h2>1. The Great Scaling Question</h2>
+                    <h4>더 큰 모델이 정말 답일까?</h4>
                 </section>
                 
                 <section>
-                    <h3>컨텍스트 윈도우의 물리적 한계</h3>
-                    <div class="chart-container">
-                        <canvas id="context-window-chart"></canvas>
-                    </div>
-                    <div class="fragment">
-                        <p>토큰 = 휘발성 메모리</p>
-                        <blockquote cite="Yann LeCun">
-                            "LLM은 지속적 메모리가 없다" - Yann LeCun
-                        </blockquote>
+                    <h3>ChatGPT 이후 모든 회사가 묻는 질문</h3>
+                    <div class="scaling-success-story">
+                        <div class="fragment">
+                            <h4>"우리도 더 큰 모델을 만들어야 할까?"</h4>
+                            <ul>
+                                <li>스타트업 → Foundation Model 개발 계획</li>
+                                <li>Big Tech → 수조 원 AI 투자 발표</li>
+                                <li>모든 회사 → "AI 퍼스트" 전략 선언</li>
+                            </ul>
+                        </div>
+                        <div class="fragment">
+                            <blockquote>
+                                "Scaling이 모든 것을 해결할 것이다" <br>
+                                <small>- Silicon Valley 통념, 2023-2024</small>
+                            </blockquote>
+                        </div>
                     </div>
                 </section>
 
                 <section>
-                    <h3>스케일링 법칙의 벽</h3>
+                    <h3>스케일링 법칙의 약속: 놀라운 성과</h3>
+                    <div class="chart-container">
+                        <canvas id="context-window-chart"></canvas>
+                    </div>
+                    <div class="fragment">
+                        <ul>
+                            <li><strong>GPT-1 (2018)</strong>: 1.2억 파라미터 → 기본 텍스트 생성</li>
+                            <li><strong>GPT-3 (2020)</strong>: 1750억 파라미터 → 놀라운 few-shot 능력</li>
+                            <li><strong>GPT-4 (2023)</strong>: 1.8조 파라미터(추정) → 인간 수준 추론</li>
+                        </ul>
+                        <p class="highlight">패턴이 명확했다: <strong>더 큰 모델 = 더 나은 성능</strong></p>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>하지만... 여전한 한계들</h3>
                     <div class="scaling-laws-viz">
                         <div class="chart-container">
                             <canvas id="scaling-chart"></canvas>
                         </div>
                         <div class="fragment">
-                            <p>더 큰 모델 ≠ 더 좋은 기억</p>
-                            <blockquote cite="Ilya Sutskever">
-                                "pretraining as we know it will end" - Ilya Sutskever
+                            <div class="limitation-list">
+                                <h4>🧠 메모리 문제</h4>
+                                <p>GPT-4도 어제 대화를 기억하지 못함</p>
+                                
+                                <h4>💰 비용 폭증</h4>
+                                <p>GPT-4 학습 비용: ~1억 달러 (추정)</p>
+                                
+                                <h4>⚡ 에너지 소모</h4>
+                                <p>ChatGPT 하루 전력: 소도시 하루 소비량</p>
+                            </div>
+                            <blockquote cite="Industry Reality">
+                                "과연 언제까지 더 클 수 있을까?" <br>
+                                <small>- 현실적 의문, 2024</small>
                             </blockquote>
                         </div>
                     </div>
                 </section>
             </section>
 
-            <!-- 섹션 2: 임시방편의 시대 -->
+            <!-- Act 2: Believers vs Heretics -->
             <section>
                 <section>
-                    <h2>2. 임시방편의 시대</h2>
-                    <h4>Harness들의 등장</h4>
+                    <h2>2. Believers vs Heretics</h2>
+                    <h4>AI의 미래를 둘러싼 철학적 대립</h4>
                 </section>
 
                 <section>
-                    <h3>RAG: 첫 번째 외부 메모리 시도</h3>
-                    <div class="architecture-diagram" id="rag-architecture">
-                        <!-- RAG 아키텍처 다이어그램 -->
-                    </div>
-                    <div class="fragment">
-                        <ul>
-                            <li>벡터 DB = 원시적 메모리 시스템</li>
-                            <li>하지만 정적이고 검색 기반</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section>
-                    <h3>GraphRAG: 구조화된 메모리의 실험</h3>
-                    <div class="architecture-diagram" id="graphrag-architecture">
-                        <!-- GraphRAG 아키텍처 다이어그램 -->
-                    </div>
-                    <div class="fragment">
-                        <ul>
-                            <li>Microsoft Research의 접근</li>
-                            <li>지식 그래프 = 더 정교한 외부 메모리</li>
-                            <li class="highlight">핵심 질문: 이것이 하네스인가, 미래인가?</li>
-                        </ul>
-                        <blockquote cite="Jerry Liu">
-                            "RAG is just a hack" - Jerry Liu, LlamaIndex CEO
-                        </blockquote>
-                    </div>
-                </section>
-
-                <section>
-                    <h3>모델 라우터: 분산 메모리</h3>
-                    <div class="architecture-diagram" id="router-architecture">
-                        <!-- 모델 라우터 아키텍처 -->
-                    </div>
-                    <div class="fragment">
-                        <ul>
-                            <li>GPT-5의 전략</li>
-                            <li>전문화된 메모리 모듈들</li>
-                            <li>하지만 여전히 임시방편?</li>
-                        </ul>
-                    </div>
-                </section>
-            </section>
-
-            <!-- 섹션 3: 진짜 메모리를 향한 여정 -->
-            <section>
-                <section>
-                    <h2>3. 진짜 메모리를 향한 여정</h2>
-                    <h4>연구의 역사</h4>
-                </section>
-
-                <section>
-                    <h3>외부 메모리 시스템의 진화</h3>
-                    <div class="timeline" id="memory-timeline">
-                        <!-- 타임라인 시각화 -->
-                    </div>
-                    <div class="fragment">
-                        <ul>
-                            <li><strong>2014:</strong> Neural Turing Machine</li>
-                            <li><strong>2016:</strong> Differentiable Neural Computer (DeepMind)</li>
-                            <li><strong>2020s:</strong> Memory-Augmented Neural Networks</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section>
-                    <h3>생물학적 영감</h3>
-                    <div class="brain-memory-viz" id="brain-memory">
-                        <!-- 뇌 메모리 구조 시각화 -->
-                    </div>
-                    <div class="fragment">
-                        <ul>
-                            <li>인간의 워킹 메모리 vs 장기 메모리</li>
-                            <li>뇌의 계층적 메모리 구조</li>
-                            <li>필요시에만 메모리 활성화</li>
-                        </ul>
-                    </div>
-                </section>
-            </section>
-
-            <!-- 섹션 4: 미래의 두 갈래 -->
-            <section>
-                <section>
-                    <h2>4. 미래의 두 갈래</h2>
-                    <h4>혁명 vs 진화</h4>
-                </section>
-
-                <section>
-                    <h3>Yann LeCun의 혁명: JEPA</h3>
-                    <div class="jepa-architecture" id="jepa-viz">
-                        <!-- JEPA 아키텍처 시각화 -->
-                    </div>
-                    <div class="fragment">
-                        <ul>
-                            <li>내재적 메모리 (세계 모델)</li>
-                            <li>"외부 메모리는 임시방편"</li>
-                            <li>3-5년 내 완전히 새로운 패러다임</li>
-                        </ul>
-                        <blockquote cite="Yann LeCun">
-                            "LLM은 막다른 길" - Yann LeCun
-                        </blockquote>
-                    </div>
-                </section>
-
-                <section>
-                    <h3>점진적 진화: 더 똑똑한 외부 메모리</h3>
-                    <div class="evolution-path" id="memory-evolution">
-                        <!-- 메모리 시스템 진화 경로 -->
-                    </div>
-                    <div class="fragment">
-                        <ul>
-                            <li>학습 가능한 GraphRAG</li>
-                            <li>동적 메모리 할당</li>
-                            <li>모듈화된 지식 시스템</li>
-                        </ul>
-                    </div>
-                </section>
-            </section>
-
-            <!-- 섹션 5: 결론 -->
-            <section>
-                <section>
-                    <h2>5. 결론</h2>
-                    <h4>GraphRAG는 디딤돌인가, 막다른 길인가?</h4>
-                </section>
-
-                <section>
-                    <h3>현재 판단</h3>
-                    <div class="verdict-chart">
-                        <canvas id="verdict-chart"></canvas>
-                    </div>
-                    <div class="fragment">
-                        <ul>
-                            <li class="verdict-harness">80% Harness (현재 LLM 한계의 임시방편)</li>
-                            <li class="verdict-future">20% Proto-Memory (미래 메모리 시스템의 실험)</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section>
-                    <h3>우리가 준비해야 할 것들</h3>
-                    <div class="preparation-roadmap">
-                        <div class="roadmap-item fragment">
-                            <h4>단기 (1-2년)</h4>
-                            <p>GraphRAG 같은 실용적 솔루션 활용</p>
+                    <h3>The Scaling Believers</h3>
+                    <div class="believer-showcase">
+                        <div class="fragment">
+                            <h4>🚀 Ilya Sutskever (OpenAI)</h4>
+                            <blockquote>
+                                "Scaling is all you need" <br>
+                                <small>- AGI 달성의 핵심은 더 큰 모델</small>
+                            </blockquote>
                         </div>
-                        <div class="roadmap-item fragment">
-                            <h4>중기 (3-5년)</h4>
-                            <p>더 정교한 외부 메모리 시스템으로 진화</p>
+                        <div class="fragment">
+                            <h4>💰 Sam Altman (OpenAI CEO)</h4>
+                            <blockquote>
+                                "7조 달러 투자로 더 큰 모델을" <br>
+                                <small>- 스케일링에 대한 무한 신뢰</small>
+                            </blockquote>
                         </div>
-                        <div class="roadmap-item fragment">
-                            <h4>장기 (5년+)</h4>
-                            <p>LeCun 식 내재적 메모리에 흡수되거나 대체</p>
+                        <div class="fragment">
+                            <div class="believer-philosophy">
+                                <h5>Believers의 신념:</h5>
+                                <ul>
+                                    <li>더 많은 데이터 + 더 큰 모델 = AGI</li>
+                                    <li>모든 문제는 스케일링으로 해결 가능</li>
+                                    <li>현재 한계는 일시적 - 더 크게 만들면 됨</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </section>
 
                 <section>
-                    <h3>마지막 질문</h3>
-                    <div class="final-questions">
-                        <h4 class="fragment">인공지능이 진짜 기억한다는 것은 무엇인가?</h4>
-                        <h4 class="fragment">우리는 더 똑똑한 검색을 원하는가?</h4>
-                        <h4 class="fragment">아니면 진짜 기억하는 AI를 원하는가?</h4>
+                    <h3>The Heretics (이단자들)</h3>
+                    <div class="heretic-showcase">
+                        <div class="fragment">
+                            <h4>🧠 Yann LeCun (Meta AI Chief)</h4>
+                            <blockquote>
+                                "LLMs are a dead end" <br>
+                                <small>- 현재 접근법으로는 AGI 불가능</small>
+                            </blockquote>
+                        </div>
+                        <div class="fragment">
+                            <h4>⚡ François Chollet (ARC 창시자)</h4>
+                            <blockquote>
+                                "Intelligence is about generalization, not memorization" <br>
+                                <small>- 진짜 지능은 스케일링과 다른 차원</small>
+                            </blockquote>
+                        </div>
+                        <div class="fragment">
+                            <div class="heretic-philosophy">
+                                <h5>Heretics의 주장:</h5>
+                                <ul>
+                                    <li>현재 LLM 패러다임은 근본적으로 제한됨</li>
+                                    <li>새로운 아키텍처가 필요 (World Models, JEPA)</li>
+                                    <li>스케일링만으로는 진짜 추론/기억 불가능</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
+                <section>
+                    <h3>Harness의 등장: 스케일링 실패의 증거?</h3>
+                    <div class="harness-emergence">
+                        <div class="fragment">
+                            <h4>🤔 근본적 질문</h4>
+                            <p>만약 스케일링이 모든 것을 해결한다면, 왜 외부 도구가 필요할까?</p>
+                        </div>
+                        <div class="fragment">
+                            <div class="architecture-diagram" id="rag-architecture">
+                                <!-- RAG 아키텍처 다이어그램 -->
+                            </div>
+                            <ul>
+                                <li><strong>RAG</strong>: "모델이 기억 못 하니까 외부 DB 연결"</li>
+                                <li><strong>GraphRAG</strong>: "더 정교한 외부 메모리 시스템"</li>
+                                <li><strong>Agent Frameworks</strong>: "모델이 못 하는 걸 도구로 보완"</li>
+                            </ul>
+                        </div>
+                        <div class="fragment">
+                            <p class="highlight">Harness = "모델만으로는 부족하다"는 암묵적 인정?</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>RAG = 백기투항?</h3>
+                    <div class="rag-analysis">
+                        <div class="fragment">
+                            <blockquote cite="Jerry Liu">
+                                "RAG is just a hack" <br>
+                                <small>- Jerry Liu, LlamaIndex CEO</small>
+                            </blockquote>
+                        </div>
+                        <div class="fragment">
+                            <div class="architecture-diagram" id="graphrag-architecture">
+                                <!-- GraphRAG 아키텍처 다이어그램 -->
+                            </div>
+                            <h4>GraphRAG: 더 정교한 "hack"</h4>
+                            <ul>
+                                <li>Microsoft Research의 야심작</li>
+                                <li>70-80% 성능 향상, 77% 비용 절감</li>
+                                <li class="highlight">하지만 여전히 "외부 메모리" 의존</li>
+                            </ul>
+                        </div>
+                        <div class="fragment">
+                            <div class="philosophical-question">
+                                <h4>핵심 질문:</h4>
+                                <p>이런 외부 도구들이 <strong>혁신</strong>인가, <strong>스케일링 한계의 증거</strong>인가?</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <!-- Act 3: Two Paths Diverge -->
+            <section>
+                <section>
+                    <h2>3. Two Paths Diverge</h2>
+                    <h4>갈라지는 미래의 길</h4>
+                </section>
+
+                <section>
+                    <h3>Path 1: Better Harness</h3>
+                    <div class="path-showcase harness-path">
+                        <div class="fragment">
+                            <h4>🔧 "더 똑똑한 외부 도구" 전략</h4>
+                            <div class="architecture-diagram" id="graphrag-architecture">
+                                <!-- GraphRAG 아키텍처 다이어그램 -->
+                            </div>
+                        </div>
+                        <div class="fragment">
+                            <div class="harness-examples">
+                                <ul>
+                                    <li><strong>GraphRAG</strong>: 지식 그래프 기반 메모리 시스템</li>
+                                    <li><strong>Agent Frameworks</strong>: 도구 사용하는 AI 시스템</li>
+                                    <li><strong>Retrieval Systems</strong>: 더 정교한 검색 및 활용</li>
+                                    <li><strong>Memory Banks</strong>: 외부 지식 저장소</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="fragment">
+                            <blockquote>
+                                "현재 모델의 한계를 외부 시스템으로 보완하자" <br>
+                                <small>- Path 1의 철학</small>
+                            </blockquote>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Path 2: New Paradigm</h3>
+                    <div class="path-showcase paradigm-path">
+                        <div class="fragment">
+                            <h4>🧠 "완전히 새로운 아키텍처" 전략</h4>
+                            <div class="jepa-architecture" id="jepa-viz">
+                                <!-- JEPA 아키텍처 시각화 -->
+                            </div>
+                        </div>
+                        <div class="fragment">
+                            <div class="paradigm-examples">
+                                <ul>
+                                    <li><strong>JEPA</strong>: 내재적 세계 모델 기반 예측</li>
+                                    <li><strong>World Models</strong>: 환경을 내부적으로 시뮬레이션</li>
+                                    <li><strong>Causal Reasoning</strong>: 진짜 추론 능력</li>
+                                    <li><strong>Adaptive Memory</strong>: 동적으로 학습하는 메모리</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="fragment">
+                            <blockquote cite="Yann LeCun">
+                                "외부 메모리는 임시방편, 진짜 지능은 내재적 모델에서" <br>
+                                <small>- Yann LeCun, Path 2의 철학</small>
+                            </blockquote>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>The Great Divide: 철학적 차이</h3>
+                    <div class="path-comparison">
+                        <div class="fragment">
+                            <div class="comparison-table">
+                                <div class="path-column">
+                                    <h4>🔧 Path 1: Better Harness</h4>
+                                    <ul>
+                                        <li>✅ <strong>현실적</strong>: 지금 당장 적용 가능</li>
+                                        <li>✅ <strong>검증됨</strong>: GraphRAG 등 성과 확인</li>
+                                        <li>✅ <strong>점진적</strong>: 기존 시스템 개선</li>
+                                        <li>❌ <strong>근본적 한계</strong>: 여전히 "보조 장치"</li>
+                                        <li>❌ <strong>복잡성 증가</strong>: 시스템이 복잡해짐</li>
+                                    </ul>
+                                </div>
+                                <div class="path-column">
+                                    <h4>🧠 Path 2: New Paradigm</h4>
+                                    <ul>
+                                        <li>✅ <strong>근본적</strong>: 진짜 지능 추구</li>
+                                        <li>✅ <strong>우아함</strong>: 단일 시스템으로 해결</li>
+                                        <li>✅ <strong>무한한 가능성</strong>: AGI 달성 가능</li>
+                                        <li>❌ <strong>불확실성</strong>: 언제 완성될지 모름</li>
+                                        <li>❌ <strong>리스크</strong>: 실패 가능성 높음</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fragment">
+                            <div class="central-question">
+                                <h4>🤔 핵심 질문</h4>
+                                <p>우리는 <strong>"실용적 개선"</strong>을 택할 것인가, <strong>"혁명적 도약"</strong>을 기다릴 것인가?</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Timeline: 언제 갈라질까?</h3>
+                    <div class="timeline-prediction">
+                        <div class="evolution-path" id="memory-evolution">
+                            <!-- 메모리 시스템 진화 경로 -->
+                        </div>
+                        <div class="fragment">
+                            <div class="timeline-analysis">
+                                <h4>📅 예상 시나리오</h4>
+                                <ul>
+                                    <li><strong>2024-2026</strong>: Path 1 전성기 (GraphRAG, Agents 확산)</li>
+                                    <li><strong>2026-2028</strong>: Path 2 돌파구? (JEPA 상용화 시작)</li>
+                                    <li><strong>2028-2030</strong>: 승부 결정? (한 쪽이 압도적 우위)</li>
+                                </ul>
+                                <p class="highlight">혹은... 두 경로가 융합될 수도 있다</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <!-- Act 4: What This Means for Engineers -->
+            <section>
+                <section>
+                    <h2>4. What This Means for Engineers</h2>
+                    <h4>과도기를 사는 우리의 전략</h4>
+                </section>
+
+                <section>
+                    <h3>현실 인식: 우리는 패러다임 전환기에 있다</h3>
+                    <div class="paradigm-shift-awareness">
+                        <div class="fragment">
+                            <h4>🎯 핵심 깨달음</h4>
+                            <ul>
+                                <li>AI는 "완성된 기술"이 아니라 "진화 중인 기술"</li>
+                                <li>현재 솔루션들(RAG, GraphRAG)은 "최종 답"이 아닌 "현재 최선"</li>
+                                <li>5년 후엔 완전히 다른 게임일 가능성</li>
+                            </ul>
+                        </div>
+                        <div class="fragment">
+                            <div class="verdict-chart">
+                                <canvas id="verdict-chart"></canvas>
+                            </div>
+                            <h4>현재 GraphRAG 평가</h4>
+                            <ul>
+                                <li class="verdict-harness">80% Harness: 현재 LLM 한계의 임시방편</li>
+                                <li class="verdict-future">20% Proto-Memory: 미래 시스템의 실험</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>단기 전략 (1-2년): 실용적 Harness 활용</h3>
+                    <div class="short-term-strategy">
+                        <div class="fragment">
+                            <h4>🚀 지금 당장 해야 할 것</h4>
+                            <ul>
+                                <li><strong>GraphRAG 파일럿</strong>: 작은 프로젝트로 시작해보기</li>
+                                <li><strong>RAG 시스템 고도화</strong>: 벡터 DB 최적화, 검색 알고리즘 개선</li>
+                                <li><strong>Agent Frameworks 학습</strong>: LangChain, AutoGPT 등 도구 익히기</li>
+                                <li><strong>프롬프트 엔지니어링 마스터</strong>: 현재 모델 한계 최대한 활용</li>
+                            </ul>
+                        </div>
+                        <div class="fragment">
+                            <blockquote>
+                                "완벽한 솔루션을 기다리지 말고, 현재 최선을 활용하라" <br>
+                                <small>- 엔지니어의 실용주의</small>
+                            </blockquote>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>중기 준비 (3-5년): 새 패러다임 대비</h3>
+                    <div class="medium-term-preparation">
+                        <div class="fragment">
+                            <h4>🧠 미래를 위한 투자</h4>
+                            <ul>
+                                <li><strong>World Models 연구</strong>: 새로운 아키텍처 원리 이해</li>
+                                <li><strong>JEPA 추적</strong>: Meta AI 연구 동향 지속 모니터링</li>
+                                <li><strong>Causal Reasoning</strong>: 진짜 추론 시스템 준비</li>
+                                <li><strong>Adaptive Systems</strong>: 동적으로 학습하는 시스템 설계</li>
+                            </ul>
+                        </div>
+                        <div class="fragment">
+                            <div class="preparation-roadmap">
+                                <div class="roadmap-item">
+                                    <h5>기술 스택 준비</h5>
+                                    <p>새로운 프레임워크에 빠르게 적응할 수 있는 기반 지식</p>
+                                </div>
+                                <div class="roadmap-item">
+                                    <h5>아키텍처 설계</h5>
+                                    <p>Harness와 새 패러다임 모두 수용할 수 있는 유연한 설계</p>
+                                </div>
+                                <div class="roadmap-item">
+                                    <h5>팀 역량</h5>
+                                    <p>연구 트렌드를 따라갈 수 있는 학습 조직 구축</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>엔지니어로서의 핵심 전략</h3>
+                    <div class="engineer-strategy">
+                        <div class="fragment">
+                            <h4>⚖️ 균형잡힌 접근</h4>
+                            <div class="strategy-balance">
+                                <div class="strategy-column">
+                                    <h5>🔧 실용적 측면</h5>
+                                    <ul>
+                                        <li>현재 도구로 최대 가치 창출</li>
+                                        <li>검증된 솔루션 우선 적용</li>
+                                        <li>점진적 개선과 최적화</li>
+                                        <li>비즈니스 임팩트 측정</li>
+                                    </ul>
+                                </div>
+                                <div class="strategy-column">
+                                    <h5>🔬 연구적 측면</h5>
+                                    <ul>
+                                        <li>새로운 패러다임 지속 탐구</li>
+                                        <li>실험적 프로젝트 진행</li>
+                                        <li>학술 연구 동향 추적</li>
+                                        <li>미래 기술 투자 준비</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fragment">
+                            <div class="core-principles">
+                                <h4>🎯 핵심 원칙</h4>
+                                <ol>
+                                    <li><strong>변화에 열린 마음</strong>: "이게 최선"이라는 고정관념 버리기</li>
+                                    <li><strong>지속적 학습</strong>: 기술 트렌드 추적을 일상화</li>
+                                    <li><strong>실험 정신</strong>: 작은 실험으로 큰 변화 준비</li>
+                                    <li><strong>비즈니스 관점</strong>: 기술이 아닌 가치 중심 사고</li>
+                                    <li><strong>장기적 시각</strong>: 단기 최적화와 장기 준비의 균형</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>마지막 메시지</h3>
+                    <div class="final-message">
+                        <div class="fragment">
+                            <blockquote>
+                                "우리는 AI 역사상 가장 흥미로운 시점에 살고 있다" <br>
+                                <small>- 스케일링과 새 패러다임 사이의 경계에서</small>
+                            </blockquote>
+                        </div>
+                        <div class="fragment">
+                            <div class="final-questions">
+                                <h4>엔지니어로서 우리의 선택</h4>
+                                <ul>
+                                    <li>🔧 <strong>현재를 마스터</strong>하면서 🔮 <strong>미래를 준비</strong></li>
+                                    <li>📊 <strong>데이터로 검증</strong>하되 💡 <strong>직관도 신뢰</strong></li>
+                                    <li>⚡ <strong>빠르게 적응</strong>하되 🎯 <strong>방향성도 유지</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="fragment">
+                            <h4 class="highlight">변화의 파도를 타는 것이 아니라, 파도를 만드는 엔지니어가 되자</h4>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>더 알아보고 싶다면</h3>
+                    <div class="resources-section">
+                        <div class="resource-group">
+                            <h4>🔧 실용적 도구들</h4>
+                            <ul class="resource-list">
+                                <li><strong>Microsoft GraphRAG</strong>: github.com/microsoft/graphrag</li>
+                                <li><strong>LangChain</strong>: 에이전트 프레임워크의 표준</li>
+                                <li><strong>Pinecone/Weaviate</strong>: 프로덕션 벡터 DB</li>
+                                <li><strong>OpenAI Assistants API</strong>: RAG 구현의 쉬운 시작</li>
+                            </ul>
+                        </div>
+                        <div class="resource-group">
+                            <h4>🧠 미래 연구 트렌드</h4>
+                            <ul class="resource-list">
+                                <li><strong>Meta AI Research</strong>: JEPA와 World Models</li>
+                                <li><strong>OpenAI Blog</strong>: 스케일링 법칙과 미래 전망</li>
+                                <li><strong>DeepMind Papers</strong>: 메모리 시스템 연구</li>
+                                <li><strong>Anthropic Research</strong>: Constitutional AI와 안전성</li>
+                            </ul>
+                        </div>
+                        <div class="resource-group">
+                            <h4>📚 추천 학습 자료</h4>
+                            <ul class="resource-list">
+                                <li><strong>CS25 Stanford</strong>: Transformers 심화 강의</li>
+                                <li><strong>Fast.ai</strong>: 실용적 딥러닝 접근</li>
+                                <li><strong>Hugging Face Course</strong>: 최신 NLP 기술</li>
+                                <li><strong>AI Engineering Newsletter</strong>: 실무 트렌드</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
                 <section>
                     <h2>Thank You</h2>
                     <h4>질문과 토론</h4>
                     <div class="contact-info">
                         <p>발표 자료: <a href="https://github.com/your-repo/ai-memory-presentation">GitHub</a></p>
+                        <p>논문 링크: <a href="https://arxiv.org">arXiv.org</a></p>
                     </div>
                 </section>
             </section>

@@ -9,15 +9,78 @@ const chartColors = {
     success: '#81c784'
 };
 
+// 반응형 유틸리티
+const ResponsiveUtils = {
+    getViewportSize: () => ({
+        width: window.innerWidth,
+        height: window.innerHeight
+    }),
+    
+    getBreakpoint: () => {
+        const width = window.innerWidth;
+        if (width <= 480) return 'mobile';
+        if (width <= 768) return 'tablet';
+        if (width <= 1024) return 'desktop-small';
+        return 'desktop';
+    },
+    
+    getDynamicDimensions: (baseWidth, baseHeight) => {
+        const viewport = ResponsiveUtils.getViewportSize();
+        const breakpoint = ResponsiveUtils.getBreakpoint();
+        
+        let scale = 1;
+        switch (breakpoint) {
+            case 'mobile':
+                scale = Math.min(viewport.width / 480, viewport.height / 600);
+                break;
+            case 'tablet':
+                scale = Math.min(viewport.width / 768, viewport.height / 800);
+                break;
+            case 'desktop-small':
+                scale = Math.min(viewport.width / 1024, viewport.height / 900);
+                break;
+            default:
+                scale = Math.min(viewport.width / 1200, viewport.height / 1000);
+        }
+        
+        return {
+            width: Math.max(baseWidth * scale, baseWidth * 0.6),
+            height: Math.max(baseHeight * scale, baseHeight * 0.6),
+            scale: scale
+        };
+    }
+};
+
 // 컨텍스트 윈도우 차트
 function createContextWindowChart() {
     const ctx = document.getElementById('context-window-chart');
     if (!ctx) return;
 
+    const breakpoint = ResponsiveUtils.getBreakpoint();
+    
+    // 반응형 폰트 크기 설정
+    const getFontSize = () => {
+        switch (breakpoint) {
+            case 'mobile': return 10;
+            case 'tablet': return 12;
+            default: return 14;
+        }
+    };
+    
+    const getTitleSize = () => {
+        switch (breakpoint) {
+            case 'mobile': return 12;
+            case 'tablet': return 14;
+            default: return 16;
+        }
+    };
+
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['GPT-3', 'GPT-3.5', 'GPT-4', 'Claude-3', 'Gemini Pro', '이론적 한계'],
+            labels: breakpoint === 'mobile' 
+                ? ['GPT-3', 'GPT-3.5', 'GPT-4', 'Claude-3', 'Gemini', '이론적']
+                : ['GPT-3', 'GPT-3.5', 'GPT-4', 'Claude-3', 'Gemini Pro', '이론적 한계'],
             datasets: [{
                 label: '컨텍스트 윈도우 (토큰)',
                 data: [4096, 16384, 128000, 200000, 1000000, 2000000],
@@ -29,7 +92,7 @@ function createContextWindowChart() {
                     chartColors.accent,
                     chartColors.warning
                 ],
-                borderWidth: 2,
+                borderWidth: breakpoint === 'mobile' ? 1 : 2,
                 borderColor: 'rgba(255, 255, 255, 0.8)'
             }]
         },
@@ -39,14 +102,15 @@ function createContextWindowChart() {
             plugins: {
                 legend: {
                     labels: {
-                        color: 'white'
+                        color: 'white',
+                        font: { size: getFontSize() }
                     }
                 },
                 title: {
                     display: true,
-                    text: 'LLM 컨텍스트 윈도우 발전',
+                    text: breakpoint === 'mobile' ? 'LLM 컨텍스트 윈도우' : 'LLM 컨텍스트 윈도우 발전',
                     color: 'white',
-                    font: { size: 16 }
+                    font: { size: getTitleSize() }
                 }
             },
             scales: {
@@ -54,6 +118,7 @@ function createContextWindowChart() {
                     beginAtZero: true,
                     ticks: {
                         color: 'white',
+                        font: { size: getFontSize() },
                         callback: function(value) {
                             if (value >= 1000000) {
                                 return (value / 1000000).toFixed(1) + 'M';
@@ -69,7 +134,9 @@ function createContextWindowChart() {
                 },
                 x: {
                     ticks: {
-                        color: 'white'
+                        color: 'white',
+                        font: { size: getFontSize() },
+                        maxRotation: breakpoint === 'mobile' ? 45 : 0
                     },
                     grid: {
                         color: 'rgba(255, 255, 255, 0.2)'
@@ -195,25 +262,70 @@ function createVerdictChart() {
 function createRAGArchitecture() {
     const container = document.getElementById('rag-architecture');
     if (!container) return;
-
+    
+    const breakpoint = ResponsiveUtils.getBreakpoint();
+    const dimensions = ResponsiveUtils.getDynamicDimensions(600, 400);
+    
+    // 반응형 설정
+    const config = {
+        mobile: {
+            boxWidth: '22%',
+            fontSize: '0.7rem',
+            padding: '0.4rem',
+            positions: {
+                query: { top: '10%', left: '5%' },
+                vectorDb: { top: '10%', left: '39%' },
+                retrievedDocs: { top: '35%', left: '39%' },
+                llm: { top: '60%', left: '39%' },
+                answer: { top: '85%', left: '39%' }
+            }
+        },
+        tablet: {
+            boxWidth: '18%',
+            fontSize: '0.8rem',
+            padding: '0.6rem',
+            positions: {
+                query: { top: '12%', left: '6%' },
+                vectorDb: { top: '12%', left: '28%' },
+                retrievedDocs: { top: '40%', left: '28%' },
+                llm: { top: '40%', left: '54%' },
+                answer: { top: '68%', left: '54%' }
+            }
+        },
+        desktop: {
+            boxWidth: '16%',
+            fontSize: '0.9rem',
+            padding: '0.8rem',
+            positions: {
+                query: { top: '15%', left: '8%' },
+                vectorDb: { top: '15%', left: '32%' },
+                retrievedDocs: { top: '45%', left: '32%' },
+                llm: { top: '45%', left: '56%' },
+                answer: { top: '75%', left: '56%' }
+            }
+        }
+    };
+    
+    const currentConfig = config[breakpoint] || config.desktop;
+    
     container.innerHTML = `
-        <div class="diagram-box" style="top: 15%; left: 8%; width: 16%;">
+        <div class="diagram-box" style="top: ${currentConfig.positions.query.top}; left: ${currentConfig.positions.query.left}; width: ${currentConfig.boxWidth}; font-size: ${currentConfig.fontSize}; padding: ${currentConfig.padding};">
             Query
         </div>
-        <div class="diagram-arrow right" style="top: 20%; left: 26%;"></div>
-        <div class="diagram-box" style="top: 15%; left: 32%; width: 16%;">
+        <div class="diagram-arrow right" style="top: calc(${currentConfig.positions.query.top} + 5%); left: calc(${currentConfig.positions.query.left} + ${currentConfig.boxWidth} + 2%);"></div>
+        <div class="diagram-box" style="top: ${currentConfig.positions.vectorDb.top}; left: ${currentConfig.positions.vectorDb.left}; width: ${currentConfig.boxWidth}; font-size: ${currentConfig.fontSize}; padding: ${currentConfig.padding};">
             Vector DB
         </div>
-        <div class="diagram-arrow down" style="top: 35%; left: 39%;"></div>
-        <div class="diagram-box" style="top: 45%; left: 32%; width: 16%;">
+        <div class="diagram-arrow down" style="top: calc(${currentConfig.positions.vectorDb.top} + 20%); left: calc(${currentConfig.positions.vectorDb.left} + 7%);"></div>
+        <div class="diagram-box" style="top: ${currentConfig.positions.retrievedDocs.top}; left: ${currentConfig.positions.retrievedDocs.left}; width: ${currentConfig.boxWidth}; font-size: ${currentConfig.fontSize}; padding: ${currentConfig.padding};">
             Retrieved Docs
         </div>
-        <div class="diagram-arrow right" style="top: 50%; left: 50%;"></div>
-        <div class="diagram-box" style="top: 45%; left: 56%; width: 16%;">
+        <div class="diagram-arrow right" style="top: calc(${currentConfig.positions.retrievedDocs.top} + 5%); left: calc(${currentConfig.positions.retrievedDocs.left} + ${currentConfig.boxWidth} + 2%);"></div>
+        <div class="diagram-box" style="top: ${currentConfig.positions.llm.top}; left: ${currentConfig.positions.llm.left}; width: ${currentConfig.boxWidth}; font-size: ${currentConfig.fontSize}; padding: ${currentConfig.padding};">
             LLM
         </div>
-        <div class="diagram-arrow down" style="top: 65%; left: 63%;"></div>
-        <div class="diagram-box" style="top: 75%; left: 56%; width: 16%;">
+        <div class="diagram-arrow down" style="top: calc(${currentConfig.positions.llm.top} + 20%); left: calc(${currentConfig.positions.llm.left} + 7%);"></div>
+        <div class="diagram-box" style="top: ${currentConfig.positions.answer.top}; left: ${currentConfig.positions.answer.left}; width: ${currentConfig.boxWidth}; font-size: ${currentConfig.fontSize}; padding: ${currentConfig.padding};">
             Answer
         </div>
     `;

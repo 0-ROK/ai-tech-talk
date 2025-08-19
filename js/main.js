@@ -240,9 +240,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // 프레젠테이션 상태 초기화
     PresentationState.init();
     
+    // 반응형 레이아웃 매니저 초기화
+    ResponsiveLayoutManager.initialize();
+    
     // 슬라이드 변경 시 타이밍 기록
     Reveal.on('slidechanged', () => {
         PresentationState.recordSlideEntry();
+        // 슬라이드 변경 시에도 현재 슬라이드의 시각화 체크
+        setTimeout(() => {
+            ResponsiveLayoutManager.regenerateVisualizations();
+        }, 100);
     });
     
     // 개발 모드에서 통계 출력
@@ -251,6 +258,8 @@ document.addEventListener('DOMContentLoaded', function() {
         document.addEventListener('keydown', function(event) {
             if (event.altKey && event.key === 'd') {
                 console.log('Presentation Statistics:', PresentationState.getStatistics());
+                console.log('Current Breakpoint:', ResponsiveLayoutManager.getCurrentBreakpoint());
+                console.log('Viewport Size:', window.innerWidth + 'x' + window.innerHeight);
             }
         });
     }
@@ -268,15 +277,174 @@ window.addEventListener('beforeprint', function() {
     }
 });
 
-// 창 크기 변경 시 차트 업데이트
-window.addEventListener('resize', function() {
-    if (window.Chart && Chart.instances) {
-        Object.values(Chart.instances).forEach(instance => {
-            if (instance && typeof instance.resize === 'function') {
-                instance.resize();
+// 반응형 레이아웃 매니저
+const ResponsiveLayoutManager = {
+    lastBreakpoint: null,
+    resizeTimeout: null,
+    
+    initialize() {
+        this.lastBreakpoint = this.getCurrentBreakpoint();
+        this.bindEvents();
+    },
+    
+    getCurrentBreakpoint() {
+        const width = window.innerWidth;
+        if (width <= 480) return 'mobile';
+        if (width <= 768) return 'tablet';
+        if (width <= 1024) return 'desktop-small';
+        return 'desktop';
+    },
+    
+    bindEvents() {
+        window.addEventListener('resize', () => {
+            clearTimeout(this.resizeTimeout);
+            this.resizeTimeout = setTimeout(() => {
+                this.handleResize();
+            }, 150); // 디바운스로 성능 최적화
+        });
+        
+        // 방향 변경 감지 (모바일)
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                this.handleResize();
+            }, 500); // 방향 변경 후 지연
+        });
+    },
+    
+    handleResize() {
+        const currentBreakpoint = this.getCurrentBreakpoint();
+        
+        // 브레이크포인트가 변경된 경우에만 재생성
+        if (currentBreakpoint !== this.lastBreakpoint) {
+            console.log(`Breakpoint changed: ${this.lastBreakpoint} → ${currentBreakpoint}`);
+            this.lastBreakpoint = currentBreakpoint;
+            this.regenerateVisualizations();
+        }
+        
+        // 차트 크기 조정
+        this.resizeCharts();
+        
+        // 컨테이너 높이 동적 조정
+        this.adjustContainerHeights();
+    },
+    
+    regenerateVisualizations() {
+        // 현재 활성 슬라이드의 시각화만 재생성
+        const currentSlide = Reveal.getCurrentSlide();
+        if (!currentSlide) return;
+        
+        // 차트 재생성 (브레이크포인트 변경 시)
+        if (currentSlide.querySelector('#context-window-chart')) {
+            // 기존 차트 제거 후 재생성
+            const canvas = currentSlide.querySelector('#context-window-chart');
+            const chartInstance = Chart.getChart(canvas);
+            if (chartInstance) {
+                chartInstance.destroy();
             }
+            createContextWindowChart();
+        }
+        
+        if (currentSlide.querySelector('#scaling-chart')) {
+            const canvas = currentSlide.querySelector('#scaling-chart');
+            const chartInstance = Chart.getChart(canvas);
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+            createScalingChart();
+        }
+        
+        if (currentSlide.querySelector('#verdict-chart')) {
+            const canvas = currentSlide.querySelector('#verdict-chart');
+            const chartInstance = Chart.getChart(canvas);
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+            createVerdictChart();
+        }
+        
+        // RAG 아키텍처 재생성
+        if (currentSlide.querySelector('#rag-architecture')) {
+            createRAGArchitecture();
+        }
+        
+        // GraphRAG 아키텍처 재생성
+        if (currentSlide.querySelector('#graphrag-architecture')) {
+            createGraphRAGArchitecture();
+        }
+        
+        // 모델 라우터 재생성
+        if (currentSlide.querySelector('#router-architecture')) {
+            createRouterArchitecture();
+        }
+        
+        // JEPA 시각화 재생성
+        if (currentSlide.querySelector('#jepa-viz')) {
+            createJEPAViz();
+        }
+        
+        // 메모리 진화 경로 재생성
+        if (currentSlide.querySelector('#memory-evolution')) {
+            createMemoryEvolution();
+        }
+        
+        // 타임라인 재생성
+        if (currentSlide.querySelector('#memory-timeline')) {
+            createMemoryTimeline();
+        }
+        
+        // 뇌 메모리 재생성
+        if (currentSlide.querySelector('#brain-memory')) {
+            createBrainMemoryViz();
+        }
+        
+        // 타이틀 메모리 애니메이션 재생성
+        if (currentSlide.querySelector('#title-memory')) {
+            createTitleMemoryAnimation();
+        }
+    },
+    
+    resizeCharts() {
+        if (window.Chart && Chart.instances) {
+            Object.values(Chart.instances).forEach(instance => {
+                if (instance && typeof instance.resize === 'function') {
+                    instance.resize();
+                }
+            });
+        }
+    },
+    
+    adjustContainerHeights() {
+        const breakpoint = this.getCurrentBreakpoint();
+        const viewportHeight = window.innerHeight;
+        
+        // 동적 높이 계산
+        let containerHeight;
+        switch (breakpoint) {
+            case 'mobile':
+                containerHeight = Math.min(viewportHeight * 0.6, 400);
+                break;
+            case 'tablet':
+                containerHeight = Math.min(viewportHeight * 0.65, 500);
+                break;
+            default:
+                containerHeight = Math.min(viewportHeight * 0.7, 600);
+        }
+        
+        // 아키텍처 다이어그램 컨테이너 높이 조정
+        document.querySelectorAll('.architecture-diagram, .jepa-architecture, .brain-memory-viz, .evolution-path').forEach(container => {
+            container.style.height = `${containerHeight}px`;
+        });
+        
+        // 타임라인 높이 조정
+        document.querySelectorAll('.timeline').forEach(timeline => {
+            timeline.style.height = `${Math.min(containerHeight * 0.8, 400)}px`;
         });
     }
+};
+
+// 창 크기 변경 시 반응형 매니저 사용
+window.addEventListener('resize', function() {
+    // 기존 차트 리사이즈는 ResponsiveLayoutManager에서 처리
 });
 
 // 에러 처리
